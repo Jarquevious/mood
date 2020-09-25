@@ -42,3 +42,21 @@ for (let i=0; i<data.length; ++i) {
     itemsContainer.appendChild(newDiv)
 }
 
+    const cart = [ ]
+
+    function addItem(name, price) {
+        const item ={name: name, price: price, qty: 1}
+        cart.push(name)
+    }
+
+    function showItems() {
+        console.log(`You have ${cart.length} items in your cart`)
+    }
+    
+    
+    addItem('paper', 1.00)
+    showItems()
+    addItem('pencil', .25)
+    showItems()
+    addItem('pen', .50)
+    showItems()
