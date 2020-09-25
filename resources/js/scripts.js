@@ -31,6 +31,7 @@ for (let i=0; i<data.length; ++i) {
     newDiv.appendChild(price)
     let button = document.createElement('button')
     button.id = data[i].name
+     
 
     // creates a custom attribute called data-price.
     // That will hold the price for each element in the button
@@ -39,5 +40,5 @@ for (let i=0; i<data.length; ++i) {
     newDiv.appendChild(button)
     // put new div inside items container
     itemsContainer.appendChild(newDiv)
-    }
+}
 
