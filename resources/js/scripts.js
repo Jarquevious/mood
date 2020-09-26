@@ -42,21 +42,54 @@ for (let i=0; i<data.length; ++i) {
     itemsContainer.appendChild(newDiv)
 }
 
-    const cart = [ ]
+    const cart = []
 
     function addItem(name, price) {
-        const item ={name: name, price: price, qty: 1}
-        cart.push(name)
-    }
+        for (let i = 0; i < cart.length; i += 1) {
+            if (cart[i].name === name) { 
+                cart[i].qyt += 1 
+                return
+            }
+        }
+        
+        const item ={name, price, qty: 1}
+        cart.push(item)
 
+    //Show items
     function showItems() {
-        console.log(`You have ${cart.length} items in your cart`)
+        const qyt = getQty()
+        console.log(`You have ${qty} items in your cart`)
+
+        for (let i = 0; i < cart.length; i += 1) {
+            console.log(`- ${cart[i].name}, $${cart[i].price} x ${cart[i].qty}`)
+        }
+        
+
+        console.log(`Total in cart: $${getTotal()}`)
     }
-    
+    //Get Quantity
+    function getQty() {
+        let qty = 0
+        for (let i = 0; i < cart.length; i += 1) {
+            qty += cart[i].qty
+            return qty
+    }
+    //Get total
+    function getTotal() {
+        let total = 0
+        for(let i=0; i < cart[i].length; i += 1) {
+            total += cart[i].price * cart[i].qty
+        }
+
+            return total.toFixed(2)
+    }
     
     addItem('paper', 1.00)
-    showItems()
+    addItem('sticky notes', 1.25)
+    addItem('sticky notes', 1.25)
     addItem('pencil', .25)
-    showItems()
+    addItem('pencil', .25)
+    addItem('pencil', .25)
     addItem('pen', .50)
-    showItems()
+    addItem('paper', 1.00)
+    addItem('sanitizer', 2.00)
