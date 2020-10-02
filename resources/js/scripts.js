@@ -41,6 +41,12 @@ for (let i=0; i<data.length; ++i) {
     newDiv.appendChild(price)
     let button = document.createElement('button')
     button.id = data[i].name
+    const all_items_button = Array.from(document.querySelectorAll("button"))
+    all_items_button.forEach(elt => elt.addEventListener('click', () => {
+        addItem(elt.getAttribute('id'), elt.getAttribute('data-price'))
+        showItems()
+      }))
+    console.log('all_items_button')
      
 
     // creates a custom attribute called data-price.
@@ -53,7 +59,6 @@ for (let i=0; i<data.length; ++i) {
     // put new div inside items container
     itemsContainer.appendChild(newDiv)
 }
-
 
     const cart = []
     
@@ -81,6 +86,7 @@ for (let i=0; i<data.length; ++i) {
 
         let itemStr = ''
         for (let i = 0; i < cart.length; i += 1) {
+            
             // console.log(`- ${cart[i].name}, $${cart[i].price} x ${cart[i].qty}`)
             const {name, price, qty} = cart[i]
             itemStr += `<li>${name}, $${price} x ${qty} = ${qty * price}</li>`
@@ -95,9 +101,9 @@ for (let i=0; i<data.length; ++i) {
         let qty = 0
         for (let i = 0; i < cart.length; i += 1) {
             qty += cart[i].qty
-            return qty
         }
-        };
+        return qty
+    };
 
     //-----------------------------------------------------------------------------------------------    
     //Get total
@@ -129,33 +135,33 @@ for (let i=0; i<data.length; ++i) {
     
     //--------------------------------------------------------------------------------------------------
     // Add items
-    addItem('paper', 1.00)
-    addItem('sticky notes', 1.25)
-    addItem('sticky notes', 1.25)
-    addItem('pencil', .25)
-    addItem('pencil', .25)
-    addItem('pencil', .25)
-    addItem('pencil', .25)
-    addItem('pencil', .25)
-    addItem('pencil', .25)
-    addItem('pen', .50)
-    addItem('paper', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('bookbag', 1.00)
-    addItem('gymbag', 1.00)
-    addItem('sanitizer', 2.00)
-    addItem('falltuition', 40000)
-    addItem('springtuition', 40000)
-    addItem('housing', 10000)
+    // addItem('paper', 1.00)
+    // addItem('sticky notes', 1.25)
+    // addItem('sticky notes', 1.25)
+    // addItem('pencil', .25)
+    // addItem('pencil', .25)
+    // addItem('pencil', .25)
+    // addItem('pencil', .25)
+    // addItem('pencil', .25)
+    // addItem('pencil', .25)
+    // addItem('pen', .50)
+    // addItem('paper', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('bookbag', 1.00)
+    // addItem('gymbag', 1.00)
+    // addItem('sanitizer', 2.00)
+    // addItem('falltuition', 40000)
+    // addItem('springtuition', 40000)
+    // addItem('housing', 10000)
     
     //--------------------------------------------------------------------------------------------------
     //Remove items one by the number of my choosing 
