@@ -62,7 +62,38 @@ for (let i=0; i<data.length; ++i) {
 
     const cart = []
     
-    //-----------------------------------------------------------------------------------------------
+    //------------------------------------------
+    //Handles change events on update input
+    
+    
+    //-----------------------------------------------------------------
+    //Handle clicks on list
+    itemList.onclick = function(e) {
+        // console.log("e.target")
+        if (e.target && e.target.classList.contains('remove')){
+            const name = e.target.dataset.name
+            removeItem(name)
+
+        } else if (e.target && e.target.classList.contains('add-one')){
+            const name = e.target.dataset.name
+            addItem(name)
+
+        } else if (e.target && e.target.classList.contains('remove-one')){
+            const name = e.target.dataset.name
+            removeItem(name, 1)
+        }
+    }
+
+    //-------------------------------------------------------------
+    //handle add form submit
+    addForm.onsite = function(e) {
+        e.preventDefault()
+        const name = itemName.value
+        const price = itemPrice.value
+        addItem(name, price)
+    }
+    
+    //-----------------------------------------------------------------
     // Add Item
     function addItem(name, price) {
         for (let i = 0; i < cart.length; i += 1) {
@@ -89,7 +120,13 @@ for (let i=0; i<data.length; ++i) {
             
             // console.log(`- ${cart[i].name}, $${cart[i].price} x ${cart[i].qty}`)
             const {name, price, qty} = cart[i]
-            itemStr += `<li>${name}, $${price} x ${qty} = ${qty * price}</li>`
+            itemStr += `<li>
+            ${name}, $${price} x ${qty} = ${qty * price}
+            <button class="Remove" data-name="${name}">Remove</button>
+            <button class="add-one" data-name="${name}"> + </button>
+            <button class="add-one" data-name="${name}"> - </button>
+            <input class=update" type="number" min="0">
+            </li>`
         }
             itemList.innerHTML = itemStr
             console.log(`Total in cart: $${getTotal()}`)        
@@ -128,6 +165,7 @@ for (let i=0; i<data.length; ++i) {
                 if(cart[i].qty < 1 || qty === 0) {
                     cart.splice(i, 1)   
                 }
+                showItems()
                 return 
             }
         }
