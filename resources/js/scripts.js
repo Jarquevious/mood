@@ -64,7 +64,15 @@ for (let i=0; i<data.length; ++i) {
     
     //------------------------------------------
     //Handles change events on update input
-    
+    itemList.onchange = function(e) {
+        if (e.target && e.target.classList.contains('update')) {
+            const name = e.target.dataset.name
+            const qty = parseInt(e.target.value)
+            updateCart(name, qty)
+        }
+
+    }
+
     
     //-----------------------------------------------------------------
     //Handle clicks on list
@@ -171,6 +179,21 @@ for (let i=0; i<data.length; ++i) {
         }
     }
     
+    //-----------------------------------------------
+    //update cart
+    function updateCart(name, qty) {
+        for(let i=0; i < cart.length; i += 1)
+        if (cart[i].name === name) {
+            if (qty < 1) {
+                removeItem(name)
+                return
+            }
+            cart[i].qty = qty
+            showItems()
+            return
+        }
+    }
+
     //--------------------------------------------------------------------------------------------------
     // Add items
     // addItem('paper', 1.00)
